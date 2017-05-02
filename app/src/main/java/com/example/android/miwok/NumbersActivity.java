@@ -32,20 +32,14 @@ public class NumbersActivity extends AppCompatActivity {
 
         // Find the root view of the layout
         LinearLayout rootView = (LinearLayout)findViewById(R.id.rootView);
-
-        // A variable which keeps track of the current index position
-        int index = 0;
-
+        
         // Create a new TextView that displays the number word at the index position and adds the
-        // view as a child to the rootView until we get to the end of the ArrayList
-        while (index < words.size()){
+        // view as a child to the rootView then loops until we get to the end of the ArrayList
+        for (int index = 0; index < words.size(); index++){
 
             TextView wordView = new TextView(this);
             wordView.setText(words.get(index));
             rootView.addView(wordView);
-
-            index++;
-
         }
 
 
