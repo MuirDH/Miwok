@@ -3,7 +3,8 @@ package com.example.android.miwok;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class NumbersActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Create an ArrayList containing the words for the numbers 1-10
-        ArrayList<String> words = new ArrayList<String>();
+        ArrayList<String> words = new ArrayList<>();
         words.add("one");
         words.add("two");
         words.add("three");
@@ -29,17 +30,24 @@ public class NumbersActivity extends AppCompatActivity {
         words.add("nine");
         words.add("ten");
 
-        // Log messages to check that the array has been initialised correctly
-        Log.v("NumbersActivity", "Word at index 0: " + words.get(0));
-        Log.v("NumbersActivity", "Word at index 0: " + words.get(1));
-        Log.v("NumbersActivity", "Word at index 0: " + words.get(2));
-        Log.v("NumbersActivity", "Word at index 0: " + words.get(3));
-        Log.v("NumbersActivity", "Word at index 0: " + words.get(4));
-        Log.v("NumbersActivity", "Word at index 0: " + words.get(5));
-        Log.v("NumbersActivity", "Word at index 0: " + words.get(6));
-        Log.v("NumbersActivity", "Word at index 0: " + words.get(7));
-        Log.v("NumbersActivity", "Word at index 0: " + words.get(8));
-        Log.v("NumbersActivity", "Word at index 0: " + words.get(9));
+        // Find the root view of the layout
+        LinearLayout rootView = (LinearLayout)findViewById(R.id.rootView);
+
+        // A variable which keeps track of the current index position
+        int index = 0;
+
+        // Create a new TextView that displays the number word at the index position and adds the
+        // view as a child to the rootView until we get to the end of the ArrayList
+        while (index < words.size()){
+
+            TextView wordView = new TextView(this);
+            wordView.setText(words.get(index));
+            rootView.addView(wordView);
+
+            index++;
+
+        }
+
 
     }
 
