@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static com.example.android.miwok.R.id.rootView;
+
 public class NumbersActivity extends AppCompatActivity {
 
     @Override
@@ -16,6 +18,14 @@ public class NumbersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_numbers);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Find the root view of the layout
+        LinearLayout foundRootView = (LinearLayout)findViewById(rootView);
+        printNumbers(foundRootView);
+
+    }
+
+    private void printNumbers (LinearLayout rootView){
 
         //Create an ArrayList containing the words for the numbers 1-10
         ArrayList<String> words = new ArrayList<>();
@@ -29,20 +39,20 @@ public class NumbersActivity extends AppCompatActivity {
         words.add("eight");
         words.add("nine");
         words.add("ten");
-
-        // Find the root view of the layout
-        LinearLayout rootView = (LinearLayout)findViewById(R.id.rootView);
-        
-        // Create a new TextView that displays the number word at the index position and adds the
-        // view as a child to the rootView then loops until we get to the end of the ArrayList
+        // loops until we get to the end of the ArrayList
         for (int index = 0; index < words.size(); index++){
 
+            // Create a new TextView
             TextView wordView = new TextView(this);
+
+            // Set the text to be the number word at the current index
             wordView.setText(words.get(index));
+
+            // Add this view as another child to the root view of this layout
             rootView.addView(wordView);
         }
-
-
     }
+
+
 
 }
