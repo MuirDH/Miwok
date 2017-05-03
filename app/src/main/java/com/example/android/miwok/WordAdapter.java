@@ -25,22 +25,33 @@ public class WordAdapter extends ArrayAdapter<Word>{
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
+        // Check if the existing view is being reused, otherwise inflate the view
         View listItemView = convertView;
 
         if (listItemView == null){
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
+        // Get the @link WordAdapter object located at this position in the list.
         Word currentWord = getItem(position);
 
-        TextView miwokWordTextView = (TextView) listItemView.findViewById(R.id.miwok_text_view);
-        miwokWordTextView.setText(currentWord.getMiwokTranslation());
+        // Find the TextView in the list_item.xml layout with the ID version name
+        TextView miwokTextView = (TextView) listItemView.findViewById(R.id.miwok_text_view);
 
-        TextView defaultWordTextview = (TextView) listItemView.findViewById(R.id.default_text_view);
-        defaultWordTextview.setText(currentWord.getDefaultTranslation());
+        // Get the Miwok word from the current Word object and set this text on the Word TextView
+        miwokTextView.setText(currentWord.getMiwokTranslation());
+
+        // Find the TextView in the list_item.xml layout with the ID version name
+        TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
+
+        // Get the default word from the current Word object and set this text on the Word TextView
+        defaultTextView.setText(currentWord.getDefaultTranslation());
 
         //ImageView iconView = (ImageView) listItemView.findViewById(R.id.list_item_icon);
         //iconView.setImageResource(currentWord.getImageResourceId());
+
+        // Return the whole list item layout (contains 2 TextViews) so that it can be shown.
         return listItemView;
     }
 }
