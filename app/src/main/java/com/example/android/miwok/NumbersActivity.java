@@ -18,25 +18,25 @@ public class NumbersActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Create an ArrayList containing the words for the numbers 1-10
-        ArrayList<String> words = new ArrayList<>();
-        words.add("one");
-        words.add("two");
-        words.add("three");
-        words.add("four");
-        words.add("five");
-        words.add("six");
-        words.add("seven");
-        words.add("eight");
-        words.add("nine");
-        words.add("ten");
+        ArrayList<Word> words = new ArrayList<>();
+
+        words.add(new Word("one", "lutti"));
+        words.add(new Word("two", "otiiko"));
+        words.add(new Word("three", "tolookosu"));
+        words.add(new Word("four", "oyyisa"));
+        words.add(new Word("five", "massokka"));
+        words.add(new Word("six", "temmokka"));
+        words.add(new Word("seven", "kenekaku"));
+        words.add(new Word("eight", "kawinta"));
+        words.add(new Word("nine", "wo'e"));
+        words.add(new Word("ten", "na'aacha"));
 
         /*
          Array adapter whose data source is a list of Strings. The list item layout, which is a
          resource defined in the Android framework, contains a single TextView which the adapter
          will set to display a single word.
          */
-        ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, words);
+        WordAdapter adapter = new WordAdapter(this, words);
 
         /*
          Find the ListView object in the view hierarchy of the Activity.
@@ -46,11 +46,10 @@ public class NumbersActivity extends AppCompatActivity {
         /*
          Make the ListView use the ArrayAdapter we created above, so that the ListView will display
          list items for each word in the list of words. This is done by calling the setAdapter
-         method on the Listview object and passing in 1 argument, whichis the ArrayAdapter with the
+         method on the Listview object and passing in 1 argument, which is the ArrayAdapter with the
          variable name itemsAdapter.
          */
-        listView.setAdapter(itemsAdapter);
-
+        listView.setAdapter(adapter);
 
     }
 
