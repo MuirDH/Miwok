@@ -15,13 +15,14 @@ import java.util.ArrayList;
  * Miwok Created by Muir on 03/05/2017.
  */
 
-public class WordAdapter extends ArrayAdapter<Word>{
+public class WordAdapter extends ArrayAdapter<Word> {
 
     private static final String LOG_TAG = WordAdapter.class.getSimpleName();
 
-    public WordAdapter(Activity context, ArrayList<Word> words){
+    public WordAdapter(Activity context, ArrayList<Word> words) {
         super(context, 0, words);
     }
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -29,7 +30,7 @@ public class WordAdapter extends ArrayAdapter<Word>{
         // Check if the existing view is being reused, otherwise inflate the view
         View listItemView = convertView;
 
-        if (listItemView == null){
+        if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
