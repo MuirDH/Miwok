@@ -35,7 +35,7 @@ public class FamilyActivity extends AppCompatActivity {
          resource defined in the Android framework, contains a single TextView which the adapter
          will set to display a single word.
          */
-        WordAdapter adapter = new WordAdapter(this, words);
+        WordAdapter adapter = new WordAdapter(this, words, R.color.category_family);
 
         /*
          Find the ListView object in the view hierarchy of the Activity.
