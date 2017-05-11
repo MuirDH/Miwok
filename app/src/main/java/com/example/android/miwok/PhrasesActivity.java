@@ -4,6 +4,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -62,6 +63,8 @@ public class PhrasesActivity extends AppCompatActivity {
 
                 // Get the {@link Word} object at the given position the user clicked on
                 Word word = words.get(position);
+
+                Log.v("PhrasesActivity", "Current word: " + word);
 
                 // Create an instance of MediaPlayer and cue the mp3
                 mediaPlayer  = MediaPlayer.create(PhrasesActivity.this, word.getAudioResourceId());

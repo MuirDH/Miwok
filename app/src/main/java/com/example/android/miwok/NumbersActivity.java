@@ -4,6 +4,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
 
-    private  MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,7 @@ public class NumbersActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Create an ArrayList containing the words for the numbers 1-10
-         final ArrayList<Word> words = new ArrayList<>();
+        final ArrayList<Word> words = new ArrayList<>();
 
         words.add(new Word("one", "lutti", R.drawable.number_one, R.raw.number_one));
         words.add(new Word("two", "otiiko", R.drawable.number_two, R.raw.number_two));
@@ -63,13 +64,14 @@ public class NumbersActivity extends AppCompatActivity {
                 // Get the {@link Word} object at the given position the user clicked on
                 Word word = words.get(position);
 
+                Log.v("NumbersActivity", "Current word: " + word);
+
                 // Create an instance of MediaPlayer and cue the mp3
-                mediaPlayer  = MediaPlayer.create(NumbersActivity.this, word.getAudioResourceId());
+                mediaPlayer = MediaPlayer.create(NumbersActivity.this, word.getAudioResourceId());
                 // play the sound file
                 mediaPlayer.start();
             }
         });
-
 
 
     }
