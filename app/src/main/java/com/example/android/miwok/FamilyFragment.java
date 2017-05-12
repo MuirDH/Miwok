@@ -1,18 +1,24 @@
 package com.example.android.miwok;
 
+
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class ColorsActivity extends AppCompatActivity {
+/**
+ * {@link Fragment} that displays a list of family vocabulary words.
+ */
+public class FamilyFragment extends Fragment {
 
     private MediaPlayer mediaPlayer;
 
@@ -48,6 +54,7 @@ public class ColorsActivity extends AppCompatActivity {
         }
     };
 
+
     private MediaPlayer.OnCompletionListener completionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
@@ -55,37 +62,46 @@ public class ColorsActivity extends AppCompatActivity {
         }
     };
 
+
+
+    public FamilyFragment() {
+        // Required empty public constructor
+    }
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.word_list);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.word_list, container, false);
 
         // Create and setup the {@link AudioManager} to request audio focus
-        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
 
-        //Create an ArrayList containing the words for the colours
-       final ArrayList<Word> words = new ArrayList<>();
+        //Create an ArrayList containing the words for the Family Members
+        final ArrayList<Word> words = new ArrayList<>();
 
-        words.add(new Word("red", "weṭeṭṭi", R.drawable.color_red, R.raw.color_red));
-        words.add(new Word("green", "chokokki", R.drawable.color_green, R.raw.color_green));
-        words.add(new Word("brown", "ṭakaakki", R.drawable.color_brown, R.raw.color_brown));
-        words.add(new Word("gray", "ṭopoppi", R.drawable.color_gray, R.raw.color_gray));
-        words.add(new Word("black", "kululli", R.drawable.color_black, R.raw.color_black));
-        words.add(new Word("white", "kelelli", R.drawable.color_white, R.raw.color_white));
-        words.add(new Word("dusty yellow", "ṭopiisә", R.drawable.color_dusty_yellow, R.raw.color_dusty_yellow));
-        words.add(new Word("mustard yellow", "chiwiiṭә", R.drawable.color_mustard_yellow, R.raw.color_mustard_yellow));
+        words.add(new Word("father", "әpә", R.drawable.family_father, R.raw.family_father));
+        words.add(new Word("mother", "әṭa", R.drawable.family_mother, R.raw.family_mother));
+        words.add(new Word("son", "angsi", R.drawable.family_son, R.raw.family_son));
+        words.add(new Word("daughter", "tune", R.drawable.family_daughter, R.raw.family_daughter));
+        words.add(new Word("older brother", "taachi", R.drawable.family_older_brother, R.raw.family_older_brother));
+        words.add(new Word("younger brother", "chalitti", R.drawable.family_younger_brother, R.raw.family_younger_brother));
+        words.add(new Word("older sister", "teṭe", R.drawable.family_older_sister, R.raw.family_older_sister));
+        words.add(new Word("younger sister", "kolliti", R.drawable.family_younger_sister, R.raw.family_younger_sister));
+        words.add(new Word("grandmother", "ama", R.drawable.family_grandmother, R.raw.family_grandmother));
+        words.add(new Word("grandfather", "paapa", R.drawable.family_grandfather, R.raw.family_grandfather));
 
         /*
          Array adapter whose data source is a list of Strings. The list item layout, which is a
          resource defined in the Android framework, contains a single TextView which the adapter
          will set to display a single word.
          */
-        WordAdapter adapter = new WordAdapter(this, words, R.color.category_colors);
+        WordAdapter adapter = new WordAdapter(getActivity(), words, R.color.category_family);
 
         /*
          Find the ListView object in the view hierarchy of the Activity.
          */
-        ListView listView = (ListView) findViewById(R.id.list);
+        ListView listView = (ListView) rootView.findViewById(R.id.list);
 
         /*
          Make the ListView use the ArrayAdapter we created above, so that the ListView will display
@@ -105,7 +121,7 @@ public class ColorsActivity extends AppCompatActivity {
                 // Get the {@link Word} object at the given position the user clicked on
                 Word word = words.get(position);
 
-                Log.v("ColorsActivity", "Current word: " + word);
+                Log.v("FamilyActivity", "Current word: " + word);
 
                 int result = audioManager.requestAudioFocus(onAudioFocusChangeListener,
                         AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
@@ -113,7 +129,7 @@ public class ColorsActivity extends AppCompatActivity {
 
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     // Create an instance of MediaPlayer and cue the mp3
-                    mediaPlayer = MediaPlayer.create(ColorsActivity.this, word.getAudioResourceId());
+                    mediaPlayer = MediaPlayer.create(getActivity(), word.getAudioResourceId());
                     // play the sound file
                     mediaPlayer.start();
 
@@ -123,10 +139,11 @@ public class ColorsActivity extends AppCompatActivity {
         });
 
 
+        return rootView;
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         releaseMediaPlayer();
     }
@@ -143,7 +160,7 @@ public class ColorsActivity extends AppCompatActivity {
             // is not configured to play an audio file at the moment.
             mediaPlayer = null;
 
-            Log.v("ColorsActivity", "MediaPlayer has been released");
+            Log.v("FamilyActivity", "MediaPlayer has been released");
 
             audioManager.abandonAudioFocus(onAudioFocusChangeListener);
         }

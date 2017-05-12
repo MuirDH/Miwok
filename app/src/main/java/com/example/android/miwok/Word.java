@@ -1,7 +1,7 @@
 package com.example.android.miwok;
 
-/**
- * Miwok Created by Muir on 03/05/2017.
+/*
+  Miwok Created by Muir on 03/05/2017.
  */
 
 /**

@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 public class WordAdapter extends ArrayAdapter<Word> {
 
-    private static final String LOG_TAG = WordAdapter.class.getSimpleName();
     private int mColorResourceId;
 
     public WordAdapter(Context context, ArrayList<Word> words, int colorResourceId) {
