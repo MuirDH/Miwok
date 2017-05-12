@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!-- Layout for a single list item -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/list_item_height"
     android:background="@color/tan_background"
-    android:minHeight="@dimen/list_item_height"
-    android:orientation="horizontal">
+    android:minHeight="@dimen/list_item_height">
 
 
     <ImageView
@@ -16,32 +15,51 @@
         android:layout_height="@dimen/list_item_height"
         android:contentDescription="@string/list_item_image" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/text_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/list_item_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/list_item_icon"
         android:orientation="vertical"
         android:paddingLeft="@dimen/list_item_padding">
 
         <TextView
             android:id="@+id/miwok_text_view"
-            style="@style/CategoryStyle"
-            android:layout_height="@dimen/zero_padding"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp44"
             android:layout_weight="1"
             android:gravity="bottom"
-            android:padding="@dimen/zero_padding"
-            tools:text="lutti"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            tools:text="lutti" />
 
         <TextView
             android:id="@+id/default_text_view"
-            style="@style/CategoryStyle"
-            android:layout_height="@dimen/zero_padding"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp44"
+            android:layout_below="@+id/miwok_text_view"
             android:layout_weight="1"
             android:gravity="top"
-            android:padding="@dimen/zero_padding"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/white"
             android:textStyle="normal"
-            tools:text="one"/>
+            tools:text="one" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/play_icon"
+            android:layout_width="@dimen/play"
+            android:layout_height="@dimen/play"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/list_item_padding"
+            android:contentDescription="@string/play_icon"
+            android:src="@drawable/ic_play_arrow_black_24dp" />
 
-</LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
