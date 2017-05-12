@@ -29,7 +29,7 @@
         <TextView
             android:id="@+id/numbers"
             style="@style/CategoryStyle"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:text="@string/category_numbers" />
 
     </FrameLayout>
@@ -43,7 +43,7 @@
         <TextView
             android:id="@+id/family"
             style="@style/CategoryStyle"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:text="@string/category_family" />
 
     </FrameLayout>
@@ -57,7 +57,7 @@
         <TextView
             android:id="@+id/colors"
             style="@style/CategoryStyle"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:text="@string/category_colors" />
 
     </FrameLayout>
@@ -71,7 +71,7 @@
         <TextView
             android:id="@+id/phrases"
             style="@style/CategoryStyle"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:text="@string/category_phrases" />
 
     </FrameLayout>
